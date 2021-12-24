@@ -239,8 +239,8 @@ def lock():
 def handle_button(pin):
         label = labels[buttons.index(pin)]
         print(label)
+        locked = pickle.load(open('logs/locked.p', 'rb'))
         if label == 'A':
-            locked = pickle.load(open('logs/locked.p', 'rb'))
             if locked:
                 unlock()
                 write_memo(get_memo_manually())
@@ -249,7 +249,6 @@ def handle_button(pin):
                 image = random.choice(['dad2.jpg', 'mom1.jpg'])
                 write_memo({'memo': image})
         elif label == 'B':
-            locked = pickle.load(open('logs/locked.p', 'rb'))
             if locked:
                 unlock()
                 write_memo(get_memo_manually())
@@ -261,15 +260,29 @@ def handle_button(pin):
             if send_blink():
                 messages = ['Your blink was sent!',
                 'Reaching out now...',
-                'Sending smoke signals.',
+                'Pinging...',
                 'Sending out a blink!']
+                _, last_memo = load_last_check()
+                write_memo({'memo': random.choice(messages)})
+                time.sleep(20)
+                write_memo(last_memo)
+            else:
+                messages = ['Your last blink is still active.',
+                'Still no response from the previous blink.',
+                'A previous blink is already set.',
+                'Sorry, still no update on the last blink.']
                 _, last_memo = load_last_check()
                 write_memo({'memo': random.choice(messages)})
                 time.sleep(20)
                 write_memo(last_memo)
 
         elif label == 'D':
-            write_memo({'memo':'instructions.jpg'})
+            if locked:
+                unlock()
+                write_memo(get_memo_manually())
+            else:
+                lock()
+                write_memo({'memo':'instructions.jpg'})
 
 
 # Load init variables
