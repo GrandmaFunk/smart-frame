@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the write.py script every 5 minutes
+Requires=memo_check.service
+
+[Timer]
+Unit=memo_check.service
+OnCalendar=*:0/5
+OnBootSec=15
+
+[Install]
+WantedBy=timers.target
