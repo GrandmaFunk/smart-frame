@@ -4,7 +4,7 @@ A smart e-ink display picture frame made as a gift. It listens for changes in a 
 
 Messages are automatically centered and a random font is selected. New images are downloaded from Google Cloud Storage and automatically resized.
 
-This frame is meant for the **Pimoroni Inky Impressions** e-ink display.
+This frame is meant for the [Pimoroni Inky Impressions](https://shop.pimoroni.com/products/inky-impression-5-7) e-ink display.
 
 ![smart-frame](smart-frame.jpg)
 
