@@ -14,4 +14,4 @@ if __name__ == '__main__':
                 inky.set_pixel(x, y, CLEAN)
 
         inky.show()
-        time.sleep(4.0)
+        time.sleep(3.0)
