@@ -1,10 +1,9 @@
 [Unit]
-Description=Run the write.py script every 5 minutes
+Description=Run the write.py script on boot
 Requires=memo_check.service
 
 [Timer]
 Unit=memo_check.service
-OnCalendar=*:0/5
 OnBootSec=15
 
 [Install]
