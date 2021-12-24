@@ -8,5 +8,5 @@ sudo cp service/check_memo.timer /etc/systemd/system/check_memo.timer
 cd /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable check_memo.timer
-sudo systemctl start check_memo.timer
+sudo systemctl enable check_memo.service
 ```
