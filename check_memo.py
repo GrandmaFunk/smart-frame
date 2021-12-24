@@ -172,11 +172,11 @@ def get_boot_memo(last_memo):
         #TODO: request specific font for this one?
     else:
         print('Generating return message...')
-        memo = random.choice(["It's nice to see you again. Let me fetch an update.",
-                "It's good to be back. Let's reconnect.",
+        memo = random.choice(["it's nice to see you again. Let me fetch an update.",
+                "it's good to be back. Let's reconnect.",
                 "this is some top-notch electricty. Hang tight.",
                 "I'll get us back on track in no time!",
-                "It's show time! Here we go..."])
+                "it's show time! Here we go..."])
     memo = {'memo': pre_memo + memo}
     return memo
 
@@ -228,29 +228,33 @@ def on_memo_update(memos, changes, read_time):
     
     callback_done.set()
 
+def unlock():
+    print('Unlocking...')
+    pickle.dump(False, open('logs/locked.p', 'wb'))
+
+def lock():
+    print('Locking...')
+    pickle.dump(True, open('logs/locked.p', 'wb'))
+
 def handle_button(pin):
         label = labels[buttons.index(pin)]
         print(label)
         if label == 'A':
             locked = pickle.load(open('logs/locked.p', 'rb'))
             if locked:
-                print('Unlocking...')
-                pickle.dump(False, open('logs/locked.p', 'wb'))
+                unlock()
                 write_memo(get_memo_manually())
             else:
-                print('Locking...')
-                pickle.dump(True, open('logs/locked.p', 'wb'))
+                lock()
                 image = random.choice(['dad2.jpg', 'mom1.jpg'])
                 write_memo({'memo': image})
         elif label == 'B':
             locked = pickle.load(open('logs/locked.p', 'rb'))
             if locked:
-                print('Unlocking...')
-                pickle.dump(False, open('logs/locked.p', 'wb'))
+                unlock()
                 write_memo(get_memo_manually())
             else:
-                print('Locking...')
-                pickle.dump(True, open('logs/locked.p', 'wb'))
+                lock()
                 image = random.choice(['pop1.jpg', 'pop2.jpg'])
                 write_memo({'memo': image})
         elif label == 'C':
@@ -271,6 +275,7 @@ def handle_button(pin):
 # Load init variables
 print('Loading variables...')
 last_update_day, last_memo = load_last_check()
+unlock()
 db = connect_to_firestore()
 est = pytz.timezone('US/Eastern')
 now = est.localize(datetime.now())
