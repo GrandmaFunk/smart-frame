@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the write.py script on boot
+Description=Run the check_memo.py script on boot
 Requires=memo_check.service
 
 [Timer]

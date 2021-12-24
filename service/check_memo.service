@@ -2,9 +2,9 @@
 Description=Run the check_memo.py file in the gift directory to check for memos to update on the e-ink display
 
 [Service]
+User=pi
 WorkingDirectory=/home/pi/frame
 Type=simple
-User=pi
 Environment=LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0
 Environment=GOOGLE_APPLICATION_CREDENTIALS=/home/pi/frame/.secrets/key.json
 ExecStart=/usr/bin/python3 /home/pi/frame/check_memo.py
