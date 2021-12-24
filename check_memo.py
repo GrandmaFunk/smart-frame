@@ -107,7 +107,7 @@ def write_memo(memo):
 
         except Exception as ex:
             print('Error during textwrap to determine line char limit')
-            message = ['I like you']
+            message = ['Something went wrong, but I still like you.']
 
         margin = 30
 
@@ -170,7 +170,7 @@ def get_boot_memo(last_memo):
         # If Initial Load
         print('First load...')
         memo = "I have power! I'll write messages here just for you. I'll load your very first message now..."
-        #TODO: request specific font for this one?
+
     else:
         print('Generating return message...')
         memo = random.choice(["it's nice to see you again. Let me fetch an update.",
@@ -214,8 +214,11 @@ def on_memo_update(memos, changes, read_time):
 
     print('Callback received...')
 
-    #TODO: Error handle this
-    memo = memos[0].to_dict()
+    try:
+        memo = memos[0].to_dict()
+    except Exception as e:
+        print(e)
+        memo = {'memo': "The message I received looks weird but I'll try harder next time!"}
 
     if (memo != last_memo):
         locked = pickle.load(open('logs/locked.p', 'rb'))
