@@ -79,7 +79,9 @@ def write_memo(memo):
         # Set font
         try:
             import os, random
-            font_type = random.choice(os.listdir('fonts'))
+            fonts = os.listdir('fonts')
+            fonts = [font for font in fonts if font.endswith('.ttf')]
+            font_type = random.choice(fonts)
             print('Chose font: ', font_type)
         except Exception as ex:
             print('Error while selecting a random font.')
