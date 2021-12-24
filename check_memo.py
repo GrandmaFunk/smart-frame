@@ -80,6 +80,7 @@ def write_memo(memo):
         try:
             import os, random
             font_type = random.choice(os.listdir('fonts'))
+            print('Chose font: ', font_type)
         except Exception as ex:
             print('Error while selecting a random font.')
             font_type = 'roboto.ttf'
