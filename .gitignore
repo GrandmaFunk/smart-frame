@@ -1,4 +1,4 @@
-# no standard Pimoroni files
+# no custom files or Pimoroni files
 advanced
 colour-palette.py
 graph.py
@@ -7,7 +7,9 @@ html
 stripes.py
 image.py
 .secrets
+.secrets/*
 env
+env/*
 testing.txt
 
 # Byte-compiled / optimized / DLL files
