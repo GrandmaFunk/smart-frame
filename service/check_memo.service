@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the write.py file in the gift directory to check for memos to update on the e-ink display
+Description=Run the check_memo.py file in the gift directory to check for memos to update on the e-ink display
 
 [Service]
 WorkingDirectory=/home/pi/frame
