@@ -20,3 +20,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable check_memo.timer
 sudo systemctl enable check_memo.service
 ```
+
+## Secrets Storage
+
+An uncommitted `.secrets` directory holds the `key.json` Google Authentication Credentials and a `vars.json` file with values for the name of the GCP project (`cloud_project`) and the name of the Google Cloud Storage bucket (`bucket_name`).
