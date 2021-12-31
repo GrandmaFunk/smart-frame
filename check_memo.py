@@ -30,7 +30,7 @@ def send_blink():
     # Toggles the "blink" record in the database
     print('Checking blink status...')
     blink = db.collection('memos').document('blink')
-    blink_status = blink.get().to_dict()['blink']
+    blink_status = blink.get().to_dict()['status']
     if blink_status == False:
         blink.update({u'status':True})
         return True
